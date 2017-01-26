@@ -1,4 +1,5 @@
 # rifling_screenshot
-it is compiled on ubuntu
 
-fast creating part of screenshots
+Fast creating part of screenshots
+
+It is compiled on ubuntu
