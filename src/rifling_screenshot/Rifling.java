@@ -13,7 +13,7 @@ public class Rifling {
 	private int y;
 	private int w;
 	private int h;
-	private String fileType = "bmp";
+	private String fileType = "jpg";
 
 	public Rifling(BufferedImage capture, int x, int y, int w, int h) {
 		this.capture = capture;
@@ -23,7 +23,7 @@ public class Rifling {
 		this.h = h;
 	}
 	
-	public String generateFileName() {
+	private String generateFileName() {
 		StringBuilder widthByPx = new StringBuilder();
 		widthByPx.append("");
 		widthByPx.append(w);
@@ -40,6 +40,10 @@ public class Rifling {
 		
 		return fileName;
 	}
+	
+	private void compressImage() {
+		
+	} 
 	
 	public String saveTenderloinImage() {
 		// need addd 300x250, 120x600 i t.d.
