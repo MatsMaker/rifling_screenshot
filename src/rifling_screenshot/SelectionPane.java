@@ -11,16 +11,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-
 
 
 public class SelectionPane extends JPanel {
@@ -62,7 +57,13 @@ public class SelectionPane extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
             	Rifling rifling = new Rifling(screenshot, getX(), getY(), getWidth(), getHeight());
-            	rifling.saveTenderloinImage();
+            	boolean result = rifling.saveTenderloinImage();
+            	if(result){
+            		label.setText("Images had saved");
+            	}
+            	else{
+            		label.setText("Error to saving image");
+            	}
             }
         });
 

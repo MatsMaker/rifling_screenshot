@@ -51,7 +51,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.Locale;
-
 import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageWriteParam;
@@ -81,17 +80,16 @@ public class ImageUtils
    * @param type int
    * @param maxWidth The image's max width
    * @param maxHeight The image's max height
-   * @return A resized <code>BufferedImage</code>
    */
-  public static BufferedImage resizeImage(String imgName, int type, int maxWidth, int maxHeight)
-  {
-    try {
-      return resizeImage(ImageIO.read(new File(imgName)), type, maxWidth, maxHeight);
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+//  public static BufferedImage resizeImage(String imgName, int type, int maxWidth, int maxHeight)
+//  {
+//    try {
+//      return resizeImage(ImageIO.read(new File(imgName)), type, maxWidth, maxHeight);
+//    }
+//    catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//  }
 
   /**
    * Resizes an image.
@@ -148,6 +146,7 @@ public class ImageUtils
     catch (IOException e) {
       e.printStackTrace();
     }
+	return false;
   }
 
   /**

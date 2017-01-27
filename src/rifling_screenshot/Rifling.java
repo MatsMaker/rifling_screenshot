@@ -3,7 +3,6 @@ package rifling_screenshot;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 
 
@@ -13,7 +12,7 @@ public class Rifling {
 	private int y;
 	private int w;
 	private int h;
-	private String fileType = "jpg";
+	private String fileType = "png";
 
 	public Rifling(BufferedImage capture, int x, int y, int w, int h) {
 		this.capture = capture;
@@ -23,7 +22,7 @@ public class Rifling {
 		this.h = h;
 	}
 	
-	private String generateFileName() {
+	private String generateFileName(int w, int h, String postfix, String fileType) {
 		StringBuilder widthByPx = new StringBuilder();
 		widthByPx.append("");
 		widthByPx.append(w);
@@ -34,20 +33,21 @@ public class Rifling {
 		heightByPx.append(h);
 		String height = heightByPx.toString();
 		
-		String fileName = String.join("_", "tenderloin_", width);
+		String fileName = String.join("_", postfix, width);
 		fileName = String.join("X", fileName, height);
 		fileName = String.join(".", fileName, fileType);
 		
 		return fileName;
 	}
 	
-	private void compressImage() {
-		
+	private boolean saveResizedImage(BufferedImage capture, int type, int maxWidth, int maxHeight) {
+		BufferedImage resizedImage = ImageUtils.resizeImage(capture, ImageUtils.IMAGE_PNG, maxWidth, maxHeight);
+		String fileName = generateFileName(maxWidth, maxHeight, "resizedByMax", fileType);
+		return ImageUtils.saveImage(resizedImage, fileName, ImageUtils.IMAGE_PNG);
 	} 
 	
-	public String saveTenderloinImage() {
-		// need addd 300x250, 120x600 i t.d.
-		String fileName = generateFileName();
+	public boolean saveTenderloinImage() {
+		String fileName = generateFileName(w, h, "origin", fileType);
 		BufferedImage tenderloin = capture.getSubimage(x, y, w, h);
 		
 		try {
@@ -56,7 +56,11 @@ public class Rifling {
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
-		return "Done";
+		
+		saveResizedImage(tenderloin, 0, 300, 250);
+		saveResizedImage(tenderloin, 0, 120, 600);
+		
+		return true;
 	}
 
 }
